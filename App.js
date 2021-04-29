@@ -1,20 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+
 import Login from './src/screens/Login';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Firebase from './Firebase';
 import Signup from './src/screens/Signup';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function App() {
+const RootStack = createStackNavigator();
+
+const App = () => {
   // const [user, loading, error] = useAuthState(Firebase.auth());
 
   return (
-    <View style={styles.container}>
-      <Signup />
-    </View>
+    <NavigationContainer>
+      <RootStack.Navigator>
+        <RootStack.Screen name="Signup" component={Signup} />
+      </RootStack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -24,3 +31,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App;
