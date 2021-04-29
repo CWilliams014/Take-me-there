@@ -11,13 +11,23 @@ import {
   StyleSheet,
 } from 'react-native';
 import { Button } from 'react-native-elements';
+import Firebase from '../../Firebase';
 
-// componentize
-const Login = () => {
+const Signup = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  console.log('email :', email);
-  console.log('password :', password);
+
+  function handleSignUp() {
+    console.log('handleSignup Called');
+    Firebase.auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((res) => {
+        console.log('firebase res :', res);
+      })
+      .catch((error) => {
+        console.log('error :', error);
+      });
+  }
   return (
     <KeyboardAvoidingView style={styles.containerView} behavior="padding">
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -41,8 +51,8 @@ const Login = () => {
             />
             <Button
               buttonStyle={styles.loginButton}
-              onPress={() => {}}
-              title="Login"
+              onPress={handleSignUp}
+              title="Sign Up"
             />
           </View>
         </View>
@@ -91,4 +101,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default Signup;
