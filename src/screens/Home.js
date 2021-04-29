@@ -2,10 +2,13 @@ import React from 'react';
 
 import { Text, View } from 'react-native';
 
-const Home = () => {
+const Home = ({ route }) => {
+  const { email, uid } = route.params;
+
   return (
     <View>
-      <Text>This is the Home Page </Text>
+      <Text>{`User Id : ${uid}`}</Text>
+      <Text>{`Email : ${email}`}</Text>
     </View>
   );
 };

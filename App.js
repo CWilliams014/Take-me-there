@@ -7,6 +7,7 @@ import Login from './src/screens/Login';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Firebase from './Firebase';
 import Signup from './src/screens/Signup';
+import Home from './src/screens/Home';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const RootStack = createStackNavigator();
@@ -17,7 +18,8 @@ const App = () => {
   return (
     <NavigationContainer>
       <RootStack.Navigator>
-        <RootStack.Screen name="Signup" component={Signup} />
+        <RootStack.Screen name="Login" component={Login} />
+        <RootStack.Screen name="Home" component={Home} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

@@ -11,13 +11,26 @@ import {
   StyleSheet,
 } from 'react-native';
 import { Button } from 'react-native-elements';
+import Firebase from '../../Firebase';
 
-// componentize
-const Login = () => {
+// componentize w Signup
+const Login = ({ navigation }) => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  console.log('email :', email);
-  console.log('password :', password);
+
+  function handleLogin() {
+    Firebase.auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((response) => {
+        const { email, uid } = response.user;
+        console.warn('Login user:', response);
+        navigation.navigate('Home', { email, uid });
+      })
+      .catch((error) => {
+        console.warn('Login Error :', error);
+      });
+  }
+
   return (
     <KeyboardAvoidingView style={styles.containerView} behavior="padding">
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -41,7 +54,7 @@ const Login = () => {
             />
             <Button
               buttonStyle={styles.loginButton}
-              onPress={() => {}}
+              onPress={handleLogin}
               title="Login"
             />
           </View>
