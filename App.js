@@ -19,6 +19,7 @@ const App = () => {
     <NavigationContainer>
       <RootStack.Navigator>
         <RootStack.Screen name="Login" component={Login} />
+        <RootStack.Screen name="Signup" component={Signup} />
         <RootStack.Screen name="Home" component={Home} />
       </RootStack.Navigator>
     </NavigationContainer>

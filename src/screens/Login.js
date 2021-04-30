@@ -9,6 +9,7 @@ import {
   Alert,
   KeyboardAvoidingView,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import Firebase from '../../Firebase';
@@ -57,6 +58,11 @@ const Login = ({ navigation }) => {
               onPress={handleLogin}
               title="Login"
             />
+            <Button
+              buttonStyle={styles.signupButton}
+              title="New User? Sign Up"
+              onPress={() => navigation.navigate('Signup')}
+            />
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -101,6 +107,24 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 15,
     marginRight: 15,
+  },
+  signupButton: {
+    marginTop: 30,
+    marginBottom: 20,
+    paddingVertical: 5,
+    marginLeft: 15,
+    marginRight: 15,
+    alignItems: 'center',
+    backgroundColor: '#FFA611',
+    borderColor: '#FFA611',
+    borderWidth: 1,
+    borderRadius: 5,
+    height: 55,
+  },
+  signupButtonText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#fff',
   },
 });
 

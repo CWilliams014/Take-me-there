@@ -13,7 +13,7 @@ import {
 import { Button } from 'react-native-elements';
 import Firebase from '../../Firebase';
 
-const Signup = () => {
+const Signup = ({ navigation }) => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
@@ -21,11 +21,13 @@ const Signup = () => {
     console.log('handleSignup Called');
     Firebase.auth()
       .createUserWithEmailAndPassword(email, password)
-      .then((res) => {
-        console.log('firebase res :', res);
+      .then((response) => {
+        const { email, uid } = response.user;
+        console.warn('Signup user:', response);
+        navigation.navigate('Home', { email, uid });
       })
       .catch((error) => {
-        console.log('error :', error);
+        console.log('Signup Error :', error);
       });
   }
   return (
