@@ -24,7 +24,13 @@ const Login = ({ navigation }) => {
       .signInWithEmailAndPassword(email, password)
       .then((response) => {
         const { email, uid } = response.user;
-        console.warn('Login user:', response);
+
+        const idTokenResult = async () => {
+          const result = await response.user.getIdTokenResult();
+          console.warn('Token Result', result);
+        };
+
+        console.warn('Login user:', idTokenResult());
         navigation.navigate('Home', { email, uid });
       })
       .catch((error) => {
