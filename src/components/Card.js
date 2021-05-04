@@ -15,10 +15,13 @@ import { Dimensions } from 'react-native';
 
 const { width, height } = Dimensions.get('screen');
 
-const Card = ({ handleClickPhoto, name, love, city, uri }) => {
-  console.log('Card name :', name);
+const Card = ({ handleClickPhoto, item }) => {
+  const { name, love, city, uri } = item;
+  console.log('Card name ITEM:', item);
   return (
-    <TouchableOpacity onPress={(e, name) => handleClickPhoto(e, name)}>
+    <TouchableOpacity
+      onPress={(e, name, uri) => handleClickPhoto(e, name, uri)}
+    >
       <ImageBackground
         style={styles.image}
         imageStyle={styles.img}

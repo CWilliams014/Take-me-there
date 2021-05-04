@@ -3,17 +3,13 @@ import Card from './Card';
 import { Text, View, FlatList, StyleSheet } from 'react-native';
 
 const EventList = ({ navigation }) => {
-  const handleClick = (event, concertName) => {
+  const handleClick = (event, concertName, image) => {
     console.log('Event click photo event :', event.target);
     console.log('handleClick conertName :', concertName);
     event.persist();
-    navigation.navigate('EventProfile', { concertName });
+    navigation.navigate('EventProfile', { concertName, image });
   };
 
-  // const handleClickPhoto = React.useCallback((concertName) => {
-  //   console.log('handleClick photo concertName :', concertName);
-  //   navigate('EventProfile', { concertName });
-  // }, []);
   return (
     <View style={styles.container}>
       <View style={styles.top}>
@@ -31,7 +27,10 @@ const EventList = ({ navigation }) => {
         numColumns={2}
         keyExtractor={(data) => data.id}
         renderItem={({ item }) => (
-          <Card handleClickPhoto={(e) => handleClick(e, item.name)} {...item} />
+          <Card
+            handleClickPhoto={(e) => handleClick(e, item.name, item.uri)}
+            item={item}
+          />
         )}
       />
     </View>
