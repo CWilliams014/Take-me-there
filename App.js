@@ -9,6 +9,7 @@ import Firebase from './Firebase';
 import Signup from './src/screens/Signup';
 import Home from './src/screens/Home';
 import { createStackNavigator } from '@react-navigation/stack';
+import EventProfile from './src/screens/EventProfile';
 
 const RootStack = createStackNavigator();
 
@@ -21,6 +22,7 @@ const App = () => {
         <RootStack.Screen name="Login" component={Login} />
         <RootStack.Screen name="Signup" component={Signup} />
         <RootStack.Screen name="Home" component={Home} />
+        <RootStack.Screen name="EventProfile" component={EventProfile} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

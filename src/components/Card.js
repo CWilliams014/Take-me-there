@@ -15,24 +15,25 @@ import { Dimensions } from 'react-native';
 
 const { width, height } = Dimensions.get('screen');
 
-const Card = ({ handleClickPhoto, item: { name, love, age, uri } }) => {
+const Card = ({ handleClickPhoto, name, love, city, uri }) => {
+  console.log('Card name :', name);
   return (
-    <TouchableOpacity onPress={handleClickPhoto}>
+    <TouchableOpacity onPress={(e, name) => handleClickPhoto(e, name)}>
       <ImageBackground
         style={styles.image}
         imageStyle={styles.img}
         source={uri}
       />
       <View style={styles.info}>
-        <Text style={styles.text}>
-          {name}, {age}
+        <Text style={styles.text} ellipsizeMode="head">
+          {name}, {city}
         </Text>
         <TouchableOpacity>
-          {love ? (
-            <Icon size={22} color={'white'} name="favorite" />
-          ) : (
-            <Icon size={22} color={'white'} name="favorite-border" />
-          )}
+          {/*{love ? (*/}
+          {/*  <Icon size={22} color={'white'} name="favorite" />*/}
+          {/*) : (*/}
+          {/*  <Icon size={22} color={'white'} name="favorite-border" />*/}
+          {/*)}*/}
         </TouchableOpacity>
       </View>
     </TouchableOpacity>
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#96948ee3',
-    padding: 10,
+    padding: 12,
     marginTop: -62,
     marginLeft: 20,
     borderBottomLeftRadius: 20,

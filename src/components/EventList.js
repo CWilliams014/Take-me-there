@@ -2,27 +2,37 @@ import React from 'react';
 import Card from './Card';
 import { Text, View, FlatList, StyleSheet } from 'react-native';
 
-const EventList = () => {
+const EventList = ({ navigation }) => {
+  const handleClick = (event, concertName) => {
+    console.log('Event click photo event :', event.target);
+    console.log('handleClick conertName :', concertName);
+    event.persist();
+    navigation.navigate('EventProfile', { concertName });
+  };
+
+  // const handleClickPhoto = React.useCallback((concertName) => {
+  //   console.log('handleClick photo concertName :', concertName);
+  //   navigate('EventProfile', { concertName });
+  // }, []);
   return (
     <View style={styles.container}>
       <View style={styles.top}>
         <View style={styles.spaceBetween}>
-          <Text style={styles.title}>Matches</Text>
+          <Text style={styles.title}>Concerts</Text>
           {/*<Button icon="notifications" />*/}
         </View>
         <View style={styles.wrapper}>
           <View style={styles.line} />
-          <View>
-            <Text style={styles.subTitle}>Today</Text>
-          </View>
-          <View style={styles.line} />
+          {/*<View style={styles.line} />*/}
         </View>
       </View>
       <FlatList
         data={users}
         numColumns={2}
         keyExtractor={(data) => data.id}
-        renderItem={(data) => <Card handleClickPhoto={() => {}} {...data} />}
+        renderItem={({ item }) => (
+          <Card handleClickPhoto={(e) => handleClick(e, item.name)} {...item} />
+        )}
       />
     </View>
   );
@@ -30,7 +40,7 @@ const EventList = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'red',
+    //backgroundColor: 'red',
     flex: 1,
   },
   top: {
@@ -70,30 +80,58 @@ const styles = StyleSheet.create({
 export const users = [
   {
     id: 1,
-    uri: require('../images/1.jpeg'),
-    name: 'Ariel',
-    age: 22,
+    uri: require('../images/BASSCENTERXI2018.jpeg'),
+    name: 'ACDC',
+    city: 'LA',
     love: true,
   },
   {
     id: 2,
-    uri: require('../images/2.jpeg'),
-    name: 'Madelina',
-    age: 20,
+    uri: require('../images/redRocksBack.jpeg'),
+    name: 'Led Zeppelin',
+    city: 'LA',
     love: false,
   },
   {
     id: 3,
-    uri: require('../images/3.jpeg'),
-    name: 'Jessie',
-    age: 20,
+    uri: require('../images/liveRandom.jpeg'),
+    name: 'The Beatles',
+    city: 'LA',
     love: false,
   },
   {
     id: 4,
-    uri: require('../images/4.jpeg'),
-    name: 'Kathy',
-    age: 24,
+    uri: require('../images/liveRandom2.jpeg'),
+    name: 'Rolling Stones',
+    city: 'LA',
+    love: true,
+  },
+  {
+    id: 5,
+    uri: require('../images/BASSCENTERXI2018.jpeg'),
+    name: 'ACDC',
+    city: 'LA',
+    love: true,
+  },
+  {
+    id: 6,
+    uri: require('../images/redRocksBack.jpeg'),
+    name: 'Led Zeppelin',
+    city: 'LA',
+    love: false,
+  },
+  {
+    id: 7,
+    uri: require('../images/liveRandom.jpeg'),
+    name: 'The Beatles',
+    city: 'LA',
+    love: false,
+  },
+  {
+    id: 8,
+    uri: require('../images/liveRandom2.jpeg'),
+    name: 'Rolling Stones',
+    city: 'LA',
     love: true,
   },
 ];

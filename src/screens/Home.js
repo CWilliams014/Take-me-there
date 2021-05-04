@@ -4,8 +4,6 @@ import * as Location from 'expo-location';
 import { Text, View, StyleSheet } from 'react-native';
 import EventCarousel from '../components/EventCarousel';
 import EventList from '../components/EventList';
-console.log('~~~~~ Event List :', EventList());
-console.log('~~~~~ Event Carousel :', EventCarousel());
 const Home = ({ navigation, route }) => {
   const { email, uid } = route.params;
 
@@ -42,8 +40,8 @@ const Home = ({ navigation, route }) => {
       <Text>{`User Id : ${uid}`}</Text>
       <Text>{`Email : ${email}`}</Text>
       <Text>{`Geolocation : ${text}`}</Text>
-      <EventList />
-      <EventCarousel navigate={navigation.navigate} />
+      <EventList navigation={navigation} />
+      {/*<EventCarousel navigate={navigation.navigate} />*/}
     </View>
   );
 };
