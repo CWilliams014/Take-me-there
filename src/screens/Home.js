@@ -1,9 +1,12 @@
 import React from 'react';
 import * as Location from 'expo-location';
 
-import { Text, View } from 'react-native';
-
-const Home = ({ route }) => {
+import { Text, View, StyleSheet } from 'react-native';
+import EventCarousel from '../components/EventCarousel';
+import EventList from '../components/EventList';
+console.log('~~~~~ Event List :', EventList());
+console.log('~~~~~ Event Carousel :', EventCarousel());
+const Home = ({ navigation, route }) => {
   const { email, uid } = route.params;
 
   const [location, setLocation] = React.useState({ lat: null, long: null });
@@ -35,12 +38,20 @@ const Home = ({ route }) => {
   console.warn('state :', location);
 
   return (
-    <View>
+    <View style={styles.homeContainer}>
       <Text>{`User Id : ${uid}`}</Text>
       <Text>{`Email : ${email}`}</Text>
       <Text>{`Geolocation : ${text}`}</Text>
+      <EventList />
+      <EventCarousel navigate={navigation.navigate} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  homeContainer: {
+    flex: 1,
+  },
+});
 
 export default Home;
