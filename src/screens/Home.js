@@ -9,7 +9,7 @@ const Home = ({ navigation, route }) => {
 
   const [location, setLocation] = React.useState({ lat: null, long: null });
   const [errorMsg, setErrorMsg] = React.useState(null);
-
+  const [address, setAddress] = React.useState();
   React.useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -17,13 +17,17 @@ const Home = ({ navigation, route }) => {
         setErrorMsg('Permission to access location was denied');
         return;
       }
-
       let location = await Location.getCurrentPositionAsync({});
+      let foundAddress = await Location.reverseGeocodeAsync(location.coords);
+      console.warn('foundAddress :', foundAddress);
+
       setLocation({
         lat: location.coords.latitude,
         long: location.coords.longitude,
       });
-      //setLocation(location);
+      setAddress({
+        ...foundAddress[0],
+      });
     })();
   }, []);
 
@@ -33,7 +37,7 @@ const Home = ({ navigation, route }) => {
   } else if (location) {
     text = JSON.stringify(location);
   }
-  console.warn('state :', location);
+  console.warn('state address :', address);
 
   return (
     <View style={styles.homeContainer}>

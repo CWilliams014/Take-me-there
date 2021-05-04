@@ -17,7 +17,7 @@ const { width, height } = Dimensions.get('screen');
 
 const Card = ({ handleClickPhoto, item }) => {
   const { name, love, city, uri } = item;
-  console.log('Card name ITEM:', item);
+  // console.log('Card name ITEM:', item);
   return (
     <TouchableOpacity
       onPress={(e, name, uri) => handleClickPhoto(e, name, uri)}
