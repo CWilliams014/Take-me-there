@@ -13,30 +13,41 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import Firebase from '../../Firebase';
-
+import { login } from '../store/AuthReducer';
+import { useDispatch, useSelector } from 'react-redux';
 // componentize w Signup
 const Login = ({ navigation }) => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-
+  const dispatch = useDispatch();
+  const authState = useSelector((state) => state.auth);
   function handleLogin() {
-    Firebase.auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((response) => {
-        const { email, uid } = response.user;
+    dispatch(login(email, password));
 
-        const idTokenResult = async () => {
-          const result = await response.user.getIdTokenResult();
-          console.warn('Token Result', result);
-        };
-
-        console.warn('Login user:', idTokenResult());
-        navigation.navigate('Home', { email, uid });
-      })
-      .catch((error) => {
-        console.warn('Login Error :', error);
-      });
+    // Firebase.auth()
+    //   .signInWithEmailAndPassword(email, password)
+    //   .then((response) => {
+    //     const { email, uid } = response.user;
+    //
+    //     const idTokenResult = async () => {
+    //       const result = await response.user.getIdTokenResult();
+    //       console.warn('Token Result', result);
+    //     };
+    //
+    //     console.warn('Login user:', idTokenResult());
+    //     navigation.navigate('Home', { email, uid });
+    //   })
+    //   .catch((error) => {
+    //     console.warn('Login Error :', error);
+    //   });
   }
+  React.useEffect(() => {
+    console.log('useEffect auth :', authState);
+    if (authState.status === 'resolved') {
+      // { email, uid }
+      navigation.navigate('Home');
+    }
+  }, [authState.status]);
 
   return (
     <KeyboardAvoidingView style={styles.containerView} behavior="padding">

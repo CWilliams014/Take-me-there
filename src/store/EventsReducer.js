@@ -10,19 +10,19 @@ const GET_EVENTS_BEGIN = 'GET_EVENTS_BEGIN';
 const GET_EVENTS_SUCCESS = 'GET_EVENTS_SUCCESS';
 const GET_EVENTS_FAILURE = 'GET_EVENTS_FAILURE';
 
-export function eventsStore(initialState = initialState) {
-  const [state, dispatch] = React.useReducer(eventsReducer, initialState);
-  const getEventsBegin = () => dispatch({ type: GET_EVENTS_BEGIN });
-  const getEventsSuccess = (events) =>
-    dispatch({ type: GET_EVENTS_SUCCESS, payload: events });
-  const getEventsFailure = () => dispatch({ type: GET_EVENTS_FAILURE });
-  return {
-    state,
-    getEventsBegin,
-    getEventsSuccess,
-    getEventsFailure,
-  };
-}
+// export function eventsStore(initialState = initialState) {
+//   const [state, dispatch] = React.useReducer(eventsReducer, initialState);
+//   const getEventsBegin = () => dispatch({ type: GET_EVENTS_BEGIN });
+//   const getEventsSuccess = (events) =>
+//     dispatch({ type: GET_EVENTS_SUCCESS, payload: events });
+//   const getEventsFailure = () => dispatch({ type: GET_EVENTS_FAILURE });
+//   return {
+//     state,
+//     getEventsBegin,
+//     getEventsSuccess,
+//     getEventsFailure,
+//   };
+// }
 
 export function eventsReducer(state = initialState, action) {
   switch (action.type) {

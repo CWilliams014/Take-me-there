@@ -34,10 +34,6 @@ const EventCarousel = () => {
                 t.mY2,
               ]}
             >
-              {/*<Icon*/}
-              {/*  style={[t.mR1, t.textSecondary, t.textXl]}*/}
-              {/*  name="star"*/}
-              {/*/>*/}
               <Text style={[t.fontM, t.textXl, t.fontBlack]}>{item.rate}</Text>
             </View>
 
