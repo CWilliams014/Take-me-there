@@ -2,26 +2,24 @@ import React from 'react';
 import Card from './Card';
 import { Text, View, FlatList, StyleSheet } from 'react-native';
 
-const EventList = ({ navigation }) => {
+const EventList = ({ navigation, events }) => {
   const handleClick = (event, concertName, image) => {
     event.persist();
     navigation.navigate('EventProfile', { concertName, image });
   };
-
+  //console.log('~~~~ EventList events :', events);
   return (
     <View style={styles.container}>
       <View style={styles.top}>
         <View style={styles.spaceBetween}>
           <Text style={styles.title}>Concerts Near You</Text>
-          {/*<Button icon="notifications" />*/}
         </View>
         <View style={styles.wrapper}>
           <View style={styles.line} />
-          {/*<View style={styles.line} />*/}
         </View>
       </View>
       <FlatList
-        data={users}
+        data={events}
         numColumns={2}
         keyExtractor={(data) => data.id}
         renderItem={({ item }) => (

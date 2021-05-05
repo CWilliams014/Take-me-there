@@ -27,7 +27,6 @@ export function authReducer(state = initialState, action) {
 }
 
 export const login = (email, password) => async (dispatch) => {
-  console.log('ASYNC login email password :', email, password);
   try {
     dispatch({ type: LOGIN_BEGIN });
     return Firebase.auth()

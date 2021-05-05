@@ -16,45 +16,56 @@ import { Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('screen');
 
 const Card = ({ handleClickPhoto, item }) => {
-  const { name, love, city, uri } = item;
-  // console.log('Card name ITEM:', item);
+  const { name, love, city, uri, title, venue, performers } = item;
+  const image = performers[0].images.huge;
+
   return (
-    <TouchableOpacity
-      onPress={(e, name, uri) => handleClickPhoto(e, name, uri)}
-    >
-      <ImageBackground
-        style={styles.image}
-        imageStyle={styles.img}
-        source={uri}
-      />
-      <View style={styles.info}>
-        <Text style={styles.text} ellipsizeMode="head">
-          {name}, {city}
-        </Text>
-      </View>
-    </TouchableOpacity>
+    <View style={styles.container}>
+      <TouchableOpacity
+        onPress={(e, name, uri) => handleClickPhoto(e, name, uri)}
+      >
+        <ImageBackground
+          style={styles.image}
+          imageStyle={styles.img}
+          source={{ uri: image }}
+        />
+        <View style={styles.info}>
+          <Text style={styles.text} ellipsizeMode="head">
+            {title}, {venue.state}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    //backgroundColor: 'red',
+    flex: 1,
+  },
   image: {
     width: (width - 20) / 2 - 20,
     height: 250,
     padding: 10,
     marginVertical: 20,
-    marginLeft: 20,
+    marginLeft: 15,
   },
   img: {
     borderRadius: 20,
   },
   info: {
+    width: (width - 20) / 2 - 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    flex: 2,
+    height: 70,
     backgroundColor: '#96948ee3',
     padding: 12,
-    marginTop: -62,
-    marginLeft: 20,
+    //paddingBottom: 5,
+    marginTop: -92,
+    marginLeft: 15,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
   },

@@ -42,7 +42,6 @@ const Login = ({ navigation }) => {
     //   });
   }
   React.useEffect(() => {
-    console.log('useEffect auth :', authState);
     if (authState.status === 'resolved') {
       // { email, uid }
       navigation.navigate('Home');

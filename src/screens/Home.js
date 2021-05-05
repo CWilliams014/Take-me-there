@@ -33,7 +33,7 @@ const Home = ({ navigation, route }) => {
       {/*<Text>{`User Id : ${uid}`}</Text>*/}
       {/*<Text>{`Email : ${email}`}</Text>*/}
       <Text>{`City : ${address.city}`}</Text>
-      <EventList navigation={navigation} />
+      <EventList navigation={navigation} events={reduxEvents} />
       {/*<EventCarousel navigate={navigation.navigate} />*/}
     </View>
   );
