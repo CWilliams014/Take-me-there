@@ -31,13 +31,6 @@ const Card = ({ handleClickPhoto, item }) => {
         <Text style={styles.text} ellipsizeMode="head">
           {name}, {city}
         </Text>
-        <TouchableOpacity>
-          {/*{love ? (*/}
-          {/*  <Icon size={22} color={'white'} name="favorite" />*/}
-          {/*) : (*/}
-          {/*  <Icon size={22} color={'white'} name="favorite-border" />*/}
-          {/*)}*/}
-        </TouchableOpacity>
       </View>
     </TouchableOpacity>
   );

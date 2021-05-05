@@ -4,8 +4,6 @@ import { Text, View, FlatList, StyleSheet } from 'react-native';
 
 const EventList = ({ navigation }) => {
   const handleClick = (event, concertName, image) => {
-    console.log('Event click photo event :', event.target);
-    console.log('handleClick conertName :', concertName);
     event.persist();
     navigation.navigate('EventProfile', { concertName, image });
   };
@@ -14,7 +12,7 @@ const EventList = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.top}>
         <View style={styles.spaceBetween}>
-          <Text style={styles.title}>Concerts</Text>
+          <Text style={styles.title}>Concerts Near You</Text>
           {/*<Button icon="notifications" />*/}
         </View>
         <View style={styles.wrapper}>
@@ -54,6 +52,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
     // fontFamily: themes.fonts.B,
     color: '#A52A2A',
+    alignItems: 'center',
+    flex: 1,
   },
   wrapper: {
     flexDirection: 'row',
