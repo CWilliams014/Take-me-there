@@ -3,9 +3,12 @@ import Card from './Card';
 import { Text, View, FlatList, StyleSheet } from 'react-native';
 
 const EventList = ({ navigation, events }) => {
-  const handleClick = (event, concertName, image) => {
+  const handleClick = (event, title, image) => {
+    console.log('handle click title :', title);
+    console.log('handle click image :', image);
+
     event.persist();
-    navigation.navigate('EventProfile', { concertName, image });
+    navigation.navigate('EventProfile', { title, image });
   };
   //console.log('~~~~ EventList events :', events);
   return (
@@ -24,7 +27,9 @@ const EventList = ({ navigation, events }) => {
         keyExtractor={(data) => data.id}
         renderItem={({ item }) => (
           <Card
-            handleClickPhoto={(e) => handleClick(e, item.name, item.uri)}
+            handleClickPhoto={(e) =>
+              handleClick(e, item.title, item.performers[0].images.huge)
+            }
             item={item}
           />
         )}

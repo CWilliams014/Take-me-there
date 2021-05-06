@@ -3,16 +3,13 @@ import React from 'react';
 import { Text, View, Image, StyleSheet } from 'react-native';
 
 const EventProfile = ({ route }) => {
+  console.log('~~Event profile route :', route);
+  const { title, image } = route.params;
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../images/liveRandom.jpeg')}
-        style={styles.backgroundImage}
-      />
+      <Image source={{ uri: image }} style={styles.backgroundImage} />
       <View style={styles.display}>
-        <Text
-          style={styles.text}
-        >{`I am Event Profile for event: ${route.params.concertName}`}</Text>
+        <Text style={styles.text}>{`${title}`}</Text>
       </View>
     </View>
   );
@@ -24,7 +21,7 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    resizeMode: 'cover', // or 'stretch'
+    resizeMode: 'cover', // or 'stretch' or 'contain'
   },
   display: {
     position: 'absolute',
@@ -35,6 +32,10 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
+    backgroundColor: '#96948ee3',
+    fontWeight: 'bold',
+    fontSize: 24,
+    paddingHorizontal: 5,
   },
 });
 

@@ -22,7 +22,7 @@ const Card = ({ handleClickPhoto, item }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        onPress={(e, name, uri) => handleClickPhoto(e, name, uri)}
+        onPress={(e, name, uri) => handleClickPhoto(e, title, image)}
       >
         <ImageBackground
           style={styles.image}

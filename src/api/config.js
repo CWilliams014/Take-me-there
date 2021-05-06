@@ -9,8 +9,6 @@ export const API_KEYS = {
 };
 const SEAT_GEEK_EVENTS_SLUG = 'https://api.seatgeek.com/2/events?venue.city=';
 
-//${city}&client_id=${API_KEYS.SEAT_GEEK_CLIENT_ID}
-
 export const getUserGeoLocation = async () => {
   try {
     let { status } = await Location.requestForegroundPermissionsAsync();
