@@ -6,7 +6,7 @@ export const initialState = {
   user: {},
 };
 
-const LOGIN_BEGIN = 'LOGIN_BEGEIN';
+const LOGIN_BEGIN = 'LOGIN_BEGIN';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGIN_FAILURE = 'LOGIN_FAILURE';
 const SIGNUP_BEGIN = 'SIGNUP_BEGIN';
@@ -27,15 +27,16 @@ export function authReducer(state = initialState, action) {
 }
 
 export const login = (email, password) => async (dispatch) => {
+  dispatch({ type: LOGIN_BEGIN });
+
   try {
-    dispatch({ type: LOGIN_BEGIN });
-    return Firebase.auth()
+    Firebase.auth()
       .signInWithEmailAndPassword(email, password)
       .then((response) => {
         const { email, uid } = response.user;
-        return response.user.getIdTokenResult().then((response) => {
+        response.user.getIdTokenResult().then((response) => {
           const user = { email, uid, token: response.token };
-          dispatch({
+          return dispatch({
             type: LOGIN_SUCCESS,
             payload: user,
           });

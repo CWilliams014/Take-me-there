@@ -22,7 +22,7 @@ const Login = ({ navigation }) => {
   const dispatch = useDispatch();
   const authState = useSelector((state) => state.auth);
   function handleLogin() {
-    dispatch(login(email, password));
+    return dispatch(login(email, password));
 
     // Firebase.auth()
     //   .signInWithEmailAndPassword(email, password)
@@ -42,6 +42,7 @@ const Login = ({ navigation }) => {
     //   });
   }
   React.useEffect(() => {
+    console.log('EFFECT AUTH :', authState);
     if (authState.status === 'resolved') {
       // { email, uid }
       navigation.navigate('Home');

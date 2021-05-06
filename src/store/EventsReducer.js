@@ -38,7 +38,6 @@ export function eventsReducer(state = initialState, action) {
 }
 
 export const getEvents = (city) => async (dispatch) => {
-  console.log('get events called city :', city);
   dispatch({ type: GET_EVENTS_BEGIN });
   try {
     const events = await getSeakGeekEvents(city);
