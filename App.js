@@ -40,13 +40,12 @@ const App = () => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <NavigationContainer>
-          <RootStack.Screen name="Login" component={Login} />
-          <RootStack.Screen name="Signup" component={Signup} />
-          <RootStack.Screen name="Home" component={Home} />
-          <RootStack.Screen name="EventProfile" component={EventProfile} />
-          {/*<Tab.Navigator>*/}
-          {/*  <Tab.Screen name="Home" component={Home} />*/}
-          {/*</Tab.Navigator>*/}
+          <RootStack.Navigator>
+            <RootStack.Screen name="Login" component={Login} />
+            <RootStack.Screen name="Signup" component={Signup} />
+            <RootStack.Screen name="Home" component={Home} />
+            <RootStack.Screen name="EventProfile" component={EventProfile} />
+          </RootStack.Navigator>
         </NavigationContainer>
       </PersistGate>
     </Provider>

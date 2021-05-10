@@ -1,7 +1,8 @@
 import React from 'react';
 import Card from './Card';
-import { Text, View, FlatList, StyleSheet } from 'react-native';
-
+import { Text, View, FlatList, StyleSheet, Picker } from 'react-native';
+// import { Tab } from 'react-native-elements/dist/tab/tab';
+// import RNPickerSelect from 'react-native-picker-select';
 const EventList = ({ navigation, events }) => {
   const handleClick = (event, title, image) => {
     event.persist();
@@ -14,6 +15,16 @@ const EventList = ({ navigation, events }) => {
         <View style={styles.spaceBetween}>
           <Text style={styles.title}>Concerts Near You</Text>
         </View>
+        <View style={styles.wrapper}>
+          <Text style={styles.dropdown}>filter bar</Text>
+          <Text style={styles.dropdown}>filter bar 2</Text>
+        </View>
+        {/*<View style={styles.wrapper}>*/}
+
+        {/*</View>*/}
+        {/*<View style={styles.wrapper}>*/}
+
+        {/*</View>*/}
         <View style={styles.wrapper}>
           <View style={styles.line} />
         </View>
@@ -42,6 +53,12 @@ const styles = StyleSheet.create({
   },
   top: {
     padding: 20,
+  },
+  dropdown: {
+    flex: 1,
+    paddingTop: 40,
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   spaceBetween: {
     flexDirection: 'row',
