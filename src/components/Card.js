@@ -6,29 +6,25 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-// import {Colors} from 'react-native/Libraries/NewAppScreen';
-// import { width } from '../helpers';
-// import themes from '../themes';
 
 import { Dimensions } from 'react-native';
 
 const { width, height } = Dimensions.get('screen');
 
 const Card = ({ handleClickPhoto, item }) => {
-  const { name, love, city, uri, title, venue, performers } = item;
+  const { title, venue, performers, drivingTime } = item;
   const image = performers[0].images.huge;
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        onPress={(e, name, uri) => handleClickPhoto(e, title, image)}
-      >
+      <TouchableOpacity onPress={(e) => handleClickPhoto(e, title, image)}>
         <ImageBackground
           style={styles.image}
           imageStyle={styles.img}
           source={{ uri: image }}
         />
+        <Text style={styles.time}>{drivingTime}</Text>
+
         <View style={styles.info}>
           <Text style={styles.text} ellipsizeMode="head">
             {title}, {venue.state}
@@ -43,6 +39,8 @@ const styles = StyleSheet.create({
   container: {
     //backgroundColor: 'red',
     flex: 1,
+    // alignItems: 'center',
+    justifyContent: 'center',
   },
   image: {
     width: (width - 20) / 2 - 20,
@@ -63,10 +61,10 @@ const styles = StyleSheet.create({
     height: 70,
     backgroundColor: '#96948ee3',
     padding: 12,
-    //paddingBottom: 5,
-    marginTop: -92,
+    // paddingBottom: 5,
+    marginTop: -90,
     marginLeft: 15,
-    //marginBottom: 0,
+    marginBottom: 0,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
   },
@@ -74,6 +72,15 @@ const styles = StyleSheet.create({
     // fontFamily: themes.fonts.M,
     fontSize: 16,
     color: 'white',
+  },
+  time: {
+    ...StyleSheet.absoluteFillObject,
+    top: 25,
+    marginLeft: 20,
+    color: 'white',
+    fontWeight: 'bold',
+    //right: 20,
+    //alignSelf: 'flex-end',
   },
 });
 

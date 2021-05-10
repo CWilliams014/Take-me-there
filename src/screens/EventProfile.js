@@ -3,7 +3,6 @@ import React from 'react';
 import { Text, View, Image, StyleSheet } from 'react-native';
 
 const EventProfile = ({ route }) => {
-  console.log('~~Event profile route :', route);
   const { title, image } = route.params;
   return (
     <View style={styles.container}>
@@ -36,6 +35,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 24,
     paddingHorizontal: 5,
+    textAlign: 'center',
   },
 });
 

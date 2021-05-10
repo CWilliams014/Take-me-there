@@ -34,7 +34,7 @@ export const login = (email, password) => async (dispatch) => {
       .signInWithEmailAndPassword(email, password)
       .then((response) => {
         const { email, uid } = response.user;
-        response.user.getIdTokenResult().then((response) => {
+        return response.user.getIdTokenResult().then((response) => {
           const user = { email, uid, token: response.token };
           return dispatch({
             type: LOGIN_SUCCESS,

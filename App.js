@@ -13,9 +13,26 @@ import { createStackNavigator } from '@react-navigation/stack';
 import EventProfile from './src/screens/EventProfile';
 import { store, persistor } from './src/store/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 const RootStack = createStackNavigator();
-
+// const Tab = createMaterialBottomTabNavigator();
+//
+// const HomeStack = () => {
+//   return (
+//     <RootStack.Navigator>
+//       <RootStack.Screen name="Home" component={Home} />
+//       <RootStack.Screen name="EventProfile" component={EventProfile} />
+//     </RootStack.Navigator>
+//   );
+// };
+// const EventProfileStack = () => {
+//   return (
+//     <RootStack.Navigator>
+//       <RootStack.Screen name="EventProfile" component={EventProfile} />
+//     </RootStack.Navigator>
+//   );
+// };
 const App = () => {
   // const [user, loading, error] = useAuthState(Firebase.auth());
   console.log('App store :', store.getState());
@@ -23,12 +40,13 @@ const App = () => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <NavigationContainer>
-          <RootStack.Navigator>
-            <RootStack.Screen name="Login" component={Login} />
-            <RootStack.Screen name="Signup" component={Signup} />
-            <RootStack.Screen name="Home" component={Home} />
-            <RootStack.Screen name="EventProfile" component={EventProfile} />
-          </RootStack.Navigator>
+          <RootStack.Screen name="Login" component={Login} />
+          <RootStack.Screen name="Signup" component={Signup} />
+          <RootStack.Screen name="Home" component={Home} />
+          <RootStack.Screen name="EventProfile" component={EventProfile} />
+          {/*<Tab.Navigator>*/}
+          {/*  <Tab.Screen name="Home" component={Home} />*/}
+          {/*</Tab.Navigator>*/}
         </NavigationContainer>
       </PersistGate>
     </Provider>

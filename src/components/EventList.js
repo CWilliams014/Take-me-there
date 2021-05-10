@@ -4,13 +4,10 @@ import { Text, View, FlatList, StyleSheet } from 'react-native';
 
 const EventList = ({ navigation, events }) => {
   const handleClick = (event, title, image) => {
-    console.log('handle click title :', title);
-    console.log('handle click image :', image);
-
     event.persist();
     navigation.navigate('EventProfile', { title, image });
   };
-  //console.log('~~~~ EventList events :', events);
+
   return (
     <View style={styles.container}>
       <View style={styles.top}>

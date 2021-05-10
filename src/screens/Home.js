@@ -8,25 +8,33 @@ import { getUserGeoLocation, getSeakGeekEvents } from '../api/config';
 import { store } from '../store/EventsReducer';
 import { getEvents } from '../store/EventsReducer';
 import { useDispatch, useSelector } from 'react-redux';
+import { getTravelTime } from '../store/EventsReducer';
 
 const Home = ({ navigation, route }) => {
   // const { email, uid } = route.params;
   const dispatch = useDispatch();
   const reduxEvents = useSelector((state) => state.events.events);
 
+  const [coords, setCoords] = React.useState({ lat: '', lon: '' });
   const [address, setAddress] = React.useState({});
   const [events, setEvents] = React.useState();
   // console.log('~~~~~~~~~~~ REDUX EVENTS :', reduxEvents);
   React.useEffect(() => {
     (async () => {
-      const address = await getUserGeoLocation();
+      const { address, location } = await getUserGeoLocation();
+      const { lat, lon: long } = location;
+      const lon = location.long;
+      dispatch(getTravelTime(lat, lon, reduxEvents));
+
+      setCoords({
+        lat,
+        lon,
+      });
       dispatch(getEvents(address.city));
       setEvents(events);
       setAddress(address);
     })();
   }, []);
-
-  // console.log('REDUX ::::::', state);
 
   return (
     <View style={styles.homeContainer}>
